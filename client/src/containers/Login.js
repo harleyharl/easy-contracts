@@ -7,20 +7,24 @@ import Bootstrap from "react-bootstrap";
 
 class Login extends Component {
 
-  constructor(props){
-    super(props)
-    this.state = {
-      email: '',
-      password: ''
-    }
+  state = {
+    username: "",
+    password: ""
   }
 
-  validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
-  }
+  // validateForm = (state) => {
+  //   return state.email.length > 0 && state.password.length > 0;
+  // }
 
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault();
+  }
+
+
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   }
 
   render() {
@@ -33,7 +37,7 @@ class Login extends Component {
               autoFocus
               type="email"
               value={this.state.email}
-              onChange={e => this.setState({ email: e.target.value })}
+              onChange={this.handleChange}
             />
           </Form.Group>
           <Form.Group controlId="password" bsSize="large">
@@ -44,7 +48,7 @@ class Login extends Component {
               type="password"
             />
           </Form.Group>
-          <Button block bsSize="large" disabled={!this.validateForm()} type="submit">
+          <Button block bsSize="large"  type="submit">
             Login
           </Button>
         </form>
