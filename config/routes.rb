@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  resources :contracts
-  resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # resources :contracts
+  # resources :users
+
+  scope '/api' do
+    namespace :v1 do
+      post '/login', to: 'auth#create'
+      get '/profile', to: 'users#show'
+      post ':users', to: 'users#create'
+    end
+  end
 end
