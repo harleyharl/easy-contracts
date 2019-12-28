@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+This is an application for the simple, collaborative creation of contracts for artists. 
