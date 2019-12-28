@@ -7,6 +7,13 @@ gem 'foreman', '~> 0.82.0'
 
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'active_model_serializers'
+
+gem 'pry'
+
+gem 'jwt'
+
+gem 'hirb'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
