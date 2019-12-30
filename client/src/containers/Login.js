@@ -1,25 +1,12 @@
-import React, { Component } from 'react';
-import "./Login.css";
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import Bootstrap from "react-bootstrap";
-
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {userLoginFetch} from '../actions/actions.js';
 
 class Login extends Component {
-
   state = {
     username: "",
     password: ""
   }
-
-  // validateForm = (state) => {
-  //   return state.email.length > 0 && state.password.length > 0;
-  // }
-
-  handleSubmit = event => {
-    event.preventDefault();
-  }
-
 
   handleChange = event => {
     this.setState({
@@ -27,35 +14,42 @@ class Login extends Component {
     });
   }
 
-  render() {
-    return (
-      <div className = "Login">
-        <form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="email" bsSize="large">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              autoFocus
-              type="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="password" bsSize="large">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              value={this.state.password}
-              onChange={e => this.setState({ password: e.target.value })}
-              type="password"
-            />
-          </Form.Group>
-          <Button block bsSize="large"  type="submit">
-            Login
-          </Button>
-        </form>
-      </div>
-    );
+  handleSubmit = (event) => {
+    event.preventDefault()
+    this.props.userLoginFetch(this.props.history, this.state)
   }
 
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <h1>Login</h1>
+
+        <label>Username</label>
+        <input
+          name='username'
+          placeholder='Username'
+          value={this.state.username}
+          onChange={this.handleChange}
+          /><br/>
+
+        <label>Password</label>
+        <input
+          type='password'
+          name='password'
+          placeholder='Password'
+          value={this.state.password}
+          onChange={this.handleChange}
+          /><br/>
+
+        <input type='submit'/>
+      </form>
+    )
+  }
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => ({
+  userLoginFetch: (history, userInfo) => dispatch(userLoginFetch(history, userInfo))
+})
+
+
+export default connect(null, mapDispatchToProps)(Login);
