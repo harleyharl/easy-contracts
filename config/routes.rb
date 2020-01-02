@@ -3,10 +3,8 @@ Rails.application.routes.draw do
   # resources :users
 
   scope '/api' do
-    namespace :v1 do
       post '/login', to: 'auth#create'
-      get '/profile', to: 'users#show'
+      get '/profile', to: 'users#profile'
       post ':users', to: 'users#create'
-    end
   end
 end
