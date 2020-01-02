@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Bootstrap from "react-bootstrap";
 import{ connect } from 'react-redux';
+import { Switch, Route, Link } from 'react-router-dom';
+
 
 
 class Profile extends Component {
@@ -19,15 +21,20 @@ class Profile extends Component {
 
         <h2>Bio</h2>
           <p/>{this.props.bio}<p/>
+
+          <Link to='/'>
+           go app page
+          </Link>
        </div>
+
     )
   }
 }
 
 const mapStateToProps = state => ({
-  username: state.currentUser.currentUser.user.username,
-  bio: state.currentUser.currentUser.user.bio,
-  avatar: state.currentUser.currentUser.user.avatar
+  username: state.currentUser.currentUser.username,
+  bio: state.currentUser.currentUser.bio,
+  avatar: state.currentUser.currentUser.avatar
 })
 
 export default connect(mapStateToProps)(Profile);
