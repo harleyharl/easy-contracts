@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {getProfileFetch, logoutUser} from './actions/actions.js';
 import Signup from './containers/Signup';
 import Login from './containers/Login';
+import Profile from './containers/Profile'
 
 
 class App extends Component {
@@ -31,13 +32,18 @@ class App extends Component {
           ? <button onClick={this.handleClick}>Log Out</button>
           : null
         }
+      {this.props.authed
+        ? <Profile />
+        : null
+      }
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.currentUser
+  currentUser: state.currentUser,
+  authed: state.authed
 })
 
 const mapDispatchToProps = dispatch => ({
