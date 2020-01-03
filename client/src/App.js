@@ -5,11 +5,13 @@ import {getProfileFetch, logoutUser} from './actions/actions.js';
 import Signup from './containers/Signup';
 import Login from './containers/Login';
 import Profile from './containers/Profile'
+import Home from './components/Home'
+import NotFound from './components/NotFound'
 
 
 class App extends Component {
-  componentDidMount = (history) => {
 
+  componentDidMount = (history) => {
     this.props.getProfileFetch(history)
   }
 
@@ -22,20 +24,15 @@ class App extends Component {
   }
 
   render() {
-    debugger
     return (
       <div>
-      <Link to='/profile'>
-       go profile
-      </Link>
-        {this.props.currentUser.currentUser.username
-          ? <button onClick={this.handleClick}>Log Out</button>
-          : null
-        }
-      {this.props.authed
-        ? <Profile />
-        : null
-      }
+        <Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/signup" component={Signup} />
+          <Route exact path="/" component={Home} />
+          <Route path="/" component={NotFound} />
+        </Switch>
       </div>
     );
   }
