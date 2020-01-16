@@ -18,6 +18,7 @@ const Root = ({ store }) =>
       <Route exact path="/login" history={history} component={Login} />
       <Route exact path="/signup" component={Signup} />
       <Route exact path="/profile" component={Profile} history={history}/>
+      <PrivateRoute authed={this.state.authed} path='/profile' component={Profile} />
       <Route component={NotFound} />
     </Switch>
   </Router>
