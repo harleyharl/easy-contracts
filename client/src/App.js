@@ -4,26 +4,20 @@ import {connect} from 'react-redux';
 import {getProfileFetch, logoutUser} from './actions/actions.js';
 import Signup from './containers/Signup';
 import Login from './containers/Login';
+import Logout from './components/Logout';
 import Profile from './containers/Profile'
+import Dashboard from './containers/Dashboard'
 import Home from './components/Home'
 import NotFound from './components/NotFound'
-
-const PrivateRoute = ({ component: Component, ...props }) => {
-  debugger
-  return (
-    <Route {...props} render={innerProps => innerProps.auth ? <Component {...innerProps} /> : <Redirect to="/login" /> }/>
-  );
-};
+import PrivateRoute from './PrivateRoute'
 
 class App extends Component {
 
   componentDidMount = (history) => {
     this.props.getProfileFetch(history)
   }
-  //
-  // auth = {
-  //   isAuthed: this.props.currentUser.authed
-  // }
+
+
 
   handleClick = event => {
     event.preventDefault()
@@ -34,12 +28,13 @@ class App extends Component {
   }
 
   render() {
-    debugger
     return (
       <div>
         <Switch>
           <Route path="/login" component={Login} />
-          <PrivateRoute exact path="/profile" component={Profile} auth={this.props.currentUser.authed} />
+          <PrivateRoute exact path="/profile" component={Profile} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <Route path="/logout" component={Logout} />
           <Route path="/signup" component={Signup} />
           <Route exact path="/" component={Home} />
           <Route path="/" component={NotFound} />
