@@ -14,8 +14,6 @@ import { createBrowserHistory } from 'history'
 
 export const history = createBrowserHistory()
 
-
-
 const store = createStore(rootReducer, compose(applyMiddleware(thunk),
   window.devToolsExtension ? window.devToolsExtension() : f => f
 ))
