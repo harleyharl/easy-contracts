@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
+import Login from '../containers/Login'
+
 
 class Home extends Component {
 
   render() {
-    return (
-      <div>
-        Private Page
-      </div>
-    );
+    if(localStorage.token !== null){
+      return (
+        <Redirect to='/dashboard' />
+      )
+    } else {
+      return (
+        <Login />
+      );
+    }
   }
-
 }
 
 export default Home;
