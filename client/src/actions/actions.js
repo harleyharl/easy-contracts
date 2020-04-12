@@ -41,12 +41,11 @@ export const userLoginFetch = (history, user) => {
           // This assumes your Rails API will return a JSON object with a key of
           // 'message' if there is an error
         } else {
-          // debugger
+          debugger
           localStorage.setItem("token", data.jwt)
-          dispatch(loginUser(data.user))
-          history.push(`/`)
+          dispatch(loginUser(data.user.user))
         }
-      })
+      }).then(resp => history.push(`/profile`))
   }
 }
 
@@ -58,6 +57,7 @@ const loginUser = userObj => ({
 
 
 export const getProfileFetch = () => {
+  debugger
   return dispatch => {
     const token = localStorage.token;
     if (token) {
