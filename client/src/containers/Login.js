@@ -21,8 +21,7 @@ class Login extends Component {
   }
 
   render() {
-    debugger
-    if (localStorage.token !== null){
+
       return(
         <form onSubmit={this.handleSubmit}>
           <h1>Login</h1>
@@ -47,9 +46,6 @@ class Login extends Component {
           <input type='submit'/>
         </form>
       )
-    } else {
-      return(<Redirect to="/login" />)
-    }
   }
 }
 
