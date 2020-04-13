@@ -10,6 +10,7 @@ import Dashboard from './containers/Dashboard'
 import Home from './components/Home'
 import NotFound from './components/NotFound'
 import PrivateRoute from './PrivateRoute'
+import NewContractForm from './NewContractForm.js'
 
 class App extends Component {
 
@@ -34,6 +35,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute exact path="/contracts/new" component={NewContractForm} />
           <Route path="/logout" component={Logout} />
           <Route path="/signup" component={Signup} />
           <Route exact path="/" component={Home} />
