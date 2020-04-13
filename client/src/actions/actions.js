@@ -84,6 +84,37 @@ export const getProfileFetch = () => {
   }
 }
 
+export const createNewContractFetch = () => {
+  return dispatch => {
+    const token = localStorage.token;
+    if (token) {
+      return fetch("http://localhost:3000/api/contracts", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      })
+        .then(resp => resp.json())
+        .then(data => {
+          if (data.message) {
+            // An error will occur if the token is invalid.
+            // If this happens, you may want to remove the invalid token.
+            localStorage.removeItem("token")
+          } else {
+            debugger
+            dispatch(createNewContract(data))
+          }
+        })
+    }
+  }
+}
+
+export const createNewContract = (contractObj) => ({
+  type: 'CREATE_NEW_CONTRACT',
+  payload: contractObj,
+})
 
 export const logoutUser = () => ({
   type: 'LOGOUT_USER'
